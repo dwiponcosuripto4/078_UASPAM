@@ -9,6 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -82,8 +83,8 @@ fun AddKontakBody(
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
     ){
         FormInput(
-            detailKontak = uiStateKontak.detailKontak,
-            onValueChange = onKontakValueChange,
+            detailBooking = uiStateBooking.detailBooking,
+            onValueChange = onBookingValueChange,
             modifier = Modifier.fillMaxWidth()
         )
         Button(
@@ -99,9 +100,9 @@ fun AddKontakBody(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormInput(
-    detailKontak: DetailKontak,
+    detailBooking: DetailBooking,
     modifier: Modifier = Modifier,
-    onValueChange: (DetailKontak) -> Unit = {},
+    onValueChange: (DetailBooking) -> Unit = {},
     enabled: Boolean = true
 ) {
     Column (
@@ -109,29 +110,36 @@ fun FormInput(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ){
         OutlinedTextField(
-            value = detailKontak.nama,
-            onValueChange = {onValueChange(detailKontak.copy(nama=it)) },
-            label = { Text(stringResource(R.string.nama)) },
+            value = detailBooking.jenisPerawatan,
+            onValueChange = {onValueChange(detailBooking.copy(jenisPerawatan=it)) },
+            label = { Text(stringResource(R.string.jenisPerawatan)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField(
-            value = detailKontak.alamat,
-            onValueChange = {onValueChange(detailKontak.copy(alamat=it)) },
-            label = { Text(stringResource(R.string.alamat)) },
+            value = detailBooking.tanggal,
+            onValueChange = {onValueChange(detailBooking.copy(tanggal=it)) },
+            label = { Text(stringResource(R.string.tanggal)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField(
-            value = detailKontak.telpon,
-            onValueChange = {onValueChange(detailKontak.copy(telpon=it)) },
-            label = { Text(stringResource(R.string.telpon)) },
+            value = detailBooking.waktu,
+            onValueChange = {onValueChange(detailBooking.copy(waktu=it)) },
+            label = { Text(stringResource(R.string.waktu)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
-
+        OutlinedTextField(
+            value = detailBooking.status,
+            onValueChange = {onValueChange(detailBooking.copy(status=it)) },
+            label = { Text(stringResource(R.string.status)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
     }
 }
