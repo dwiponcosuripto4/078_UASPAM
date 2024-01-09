@@ -8,18 +8,18 @@ data class UIStateBooking(
 
 data class  DetailBooking(
     val id: String = "",
+    val jenisPerawatan : String= "",
     val tanggal : String= "",
     val waktu : String= "",
-    val jenisPerawatan : String= "",
     val status : String= ""
 )
 
 /* Fungsi untuk mengkonversi data input ke data dalam tabel sesuai jenis datanya*/
 fun DetailBooking.toBooking(): Booking = Booking(
     id = id,
+    jenisPerawatan = jenisPerawatan,
     tanggal = tanggal,
     waktu = waktu,
-    jenisPerawatan = jenisPerawatan,
     status = status
 )
 
@@ -30,9 +30,9 @@ data class DetailUIState(
 fun Booking.toDetailBooking(): DetailBooking =
     DetailBooking(
         id = id,
+        jenisPerawatan = jenisPerawatan,
         tanggal = tanggal,
         waktu = waktu,
-        jenisPerawatan = jenisPerawatan,
         status = status
     )
 
