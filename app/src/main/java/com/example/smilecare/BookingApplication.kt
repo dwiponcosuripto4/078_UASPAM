@@ -1,16 +1,15 @@
 package com.example.smilecare
 
-import com.example.smilecare.data.BookingRepository
-import com.example.smilecare.data.BookingRepositoryImpl
-import com.google.firebase.firestore.FirebaseFirestore
+import android.app.Application
+import com.example.smilecare.data.AppContainer
+import com.example.smilecare.data.BookingContainer
 
-interface AppContainer{
-    val bookingRepository: BookingRepository
-}
-class BookingContainer : AppContainer {
-    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+class BookingApplication: Application() {
+    lateinit var container: AppContainer
 
-    override val bookingRepository: BookingRepository by lazy {
-        BookingRepositoryImpl(firestore)
+    override fun onCreate() {
+        super.onCreate()
+
+        container = BookingContainer()
     }
 }
