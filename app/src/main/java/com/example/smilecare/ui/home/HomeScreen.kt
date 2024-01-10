@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -25,7 +26,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextAlign
@@ -38,7 +38,7 @@ import com.example.smilecare.ui.PenyediaViewModel
 
 object DestinasiHome : DestinasiNavigasi {
     override val route = "home"
-    override val titleRes = "Booking"
+    override val titleRes = "Reservasi Anda"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,7 +55,7 @@ fun HomeScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             BookingTopAppBar(
-                title = "Booking",
+                title = "Reservasi Anda",
                 canNavigateBack = false,
                 scrollBehavior = scrollBehavior
             )
@@ -91,14 +91,25 @@ fun BodyHome(
     onBookingClick: (String) -> Unit = {}
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
+        Text(
+            text = "Klinik dr. Riayani",
+            style = MaterialTheme.typography.titleMedium,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        )
+        Divider(modifier = Modifier.fillMaxWidth())
         if (itemBooking.isEmpty()) {
             Text(
                 text = "Tidak ada data Booking",
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp)
             )
         } else {
             ListBooking(

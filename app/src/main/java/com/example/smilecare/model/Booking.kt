@@ -2,10 +2,12 @@ package com.example.smilecare.model
 
 data class Booking(
     val id: String,
-    val jenisPerawatan: String,
-    val tanggal: String,
     val waktu: String,
-    val status: String
+    val jenisPerawatan: String,
+    val catatanKhusus: String,
+    val status: String,
+    val nomorAntrian: String,
+    val tanggal: String,
 ) {
-    constructor() : this("", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "")
 }

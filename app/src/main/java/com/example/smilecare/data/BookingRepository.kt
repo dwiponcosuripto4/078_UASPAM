@@ -21,7 +21,7 @@ interface BookingRepository{
 class BookingRepositoryImpl(private val firestore: FirebaseFirestore):BookingRepository{
     override fun getAll(): Flow<List<Booking>> = flow{
         val snapshot = firestore.collection("Booking")
-            .orderBy("nama", Query.Direction.ASCENDING)
+            .orderBy("jenisPerawatan", Query.Direction.ASCENDING)
             .get()
             .await()
         val booking = snapshot.toObjects(Booking::class.java)

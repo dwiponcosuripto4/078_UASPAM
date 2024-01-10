@@ -109,22 +109,9 @@ fun FormInput(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ){
-        OutlinedTextField(
-            value = detailBooking.jenisPerawatan,
-            onValueChange = {onValueChange(detailBooking.copy(jenisPerawatan=it)) },
-            label = { Text(stringResource(R.string.jenisPerawatan)) },
-            modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
-            singleLine = true
-        )
-        OutlinedTextField(
-            value = detailBooking.tanggal,
-            onValueChange = {onValueChange(detailBooking.copy(tanggal=it)) },
-            label = { Text(stringResource(R.string.tanggal)) },
-            modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
-            singleLine = true
-        )
+        // Other fields...
+
+        // Waktu (dropdown)
         OutlinedTextField(
             value = detailBooking.waktu,
             onValueChange = {onValueChange(detailBooking.copy(waktu=it)) },
@@ -133,10 +120,42 @@ fun FormInput(
             enabled = enabled,
             singleLine = true
         )
+
+        // Jenis Perawatan (dropdown)
+        OutlinedTextField(
+            value = detailBooking.jenisPerawatan,
+            onValueChange = {onValueChange(detailBooking.copy(jenisPerawatan=it)) },
+            label = { Text(stringResource(R.string.jenisPerawatan)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
+
+        // Catatan Khusus
+        OutlinedTextField(
+            value = detailBooking.catatanKhusus,
+            onValueChange = {onValueChange(detailBooking.copy(catatanKhusus=it)) },
+            label = { Text(stringResource(R.string.catatanKhusus)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
+
+        // Status
         OutlinedTextField(
             value = detailBooking.status,
             onValueChange = {onValueChange(detailBooking.copy(status=it)) },
             label = { Text(stringResource(R.string.status)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
+
+        // Nomor Antrian
+        OutlinedTextField(
+            value = detailBooking.nomorAntrian,
+            onValueChange = {onValueChange(detailBooking.copy(nomorAntrian=it)) },
+            label = { Text(stringResource(R.string.nomorAntrian)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true

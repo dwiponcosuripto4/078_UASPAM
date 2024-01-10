@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">SmileCare</string>
     <string name="btn_submit">Submit</string>
-    <string name="jenisPerawatan" />
-    <string name="tanggal" />
-    <string name="waktu" />
-    <string name="status" />
+    <string name="jenisPerawatan">Jenis Perawatan</string>
+    <string name="tanggal">tanggal</string>
+    <string name="waktu">waktu</string>
+    <string name="status">status</string>
+    <string name="catatanKhusus">catatan khusus</string>
+    <string name="nomorAntrian">no antri</string>
 </resources>
