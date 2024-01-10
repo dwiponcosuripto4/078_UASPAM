@@ -73,9 +73,9 @@ fun HomeScreen(
             }
         },
     ) { innerPadding ->
-        val uiStateSiswa by viewModel.homeUIState.collectAsState()
+        val uiStateBooking by viewModel.homeUIState.collectAsState()
         BodyHome(
-            itemBooking = uiStateSiswa.listBooking,
+            itemBooking = uiStateBooking.listBooking,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),
