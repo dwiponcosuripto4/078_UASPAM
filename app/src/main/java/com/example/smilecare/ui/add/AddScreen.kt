@@ -54,7 +54,7 @@ fun AddScreen(
         }
     ) { innerPadding ->
 
-        AddKontakBody(
+        AddBookingBody(
             uiStateBooking = viewModel.uiStateBooking,
             onBookingValueChange = viewModel::updateUiState,
             onSaveClick = {
@@ -72,7 +72,7 @@ fun AddScreen(
 }
 
 @Composable
-fun AddKontakBody(
+fun AddBookingBody(
     uiStateBooking: UIStateBooking,
     onBookingValueChange: (DetailBooking) -> Unit,
     onSaveClick: () -> Unit,
