@@ -11,18 +11,22 @@ SmileCare adalah aplikasi mobile yang dirancang untuk memudahkan pengguna dalam 
 
 Use Case
 -
-![Untitled (4)](https://github.com/dwiponcosuripto4/078_UASPAM/assets/115076093/4ade4559-9176-4f22-b831-4ad2ad8d16bb)
+![Untitled (5)](https://github.com/dwiponcosuripto4/078_UASPAM/assets/115076093/6f48f837-b3e6-46d6-bda7-2e473b52aab2)
 
-Sign up (Pendaftaran): Pengguna dapat mendaftarkan akun mereka dengan mengisi informasi pribadi seperti nama, alamat, nomor telepon, dan email untuk mengakses layanan SmileCare.
+Reservasi Perawatan:
+Pengguna dapat membuat janji perawatan gigi tanpa perlu login. Mereka dapat memilih tanggal, waktu, dan jenis perawatan yang diinginkan, memudahkan proses pemesanan dengan cepat dan tanpa pembatasan akses.
 
-Login (Masuk): Pengguna yang telah mendaftar dapat masuk ke dalam aplikasi dengan menggunakan akun mereka untuk menjadwalkan perawatan gigi dan mengakses fitur lainnya.
+Melihat Jadwal Praktik Dokter:
+Pengguna dapat melihat jadwal praktik dokter gigi yang tersedia tanpa perlu login. Ini memungkinkan mereka untuk memilih slot waktu yang sesuai dengan kebutuhan mereka.
 
-Logout (Keluar): Pengguna dapat keluar dari akun mereka untuk mengamankan informasi pribadi dan mengakhiri sesi penggunaan aplikasi SmileCare.
+Melihat Riwayat Reservasi:
+Pengguna dapat mengakses riwayat reservasi mereka tanpa login. Mereka dapat melihat catatan perawatan gigi sebelumnya dan memantau perkembangan kesehatan gigi mereka.
 
-Reservasi Perawatan (Booking): Pengguna dapat membuat janji perawatan gigi dengan memilih tanggal, waktu, dan jenis perawatan yang diinginkan, memudahkan proses pemesanan.
+Menghapus Reservasi:
+Pengguna memiliki opsi untuk menghapus reservasi yang telah mereka buat. Hal ini memberikan fleksibilitas jika terdapat perubahan atau pembatalan perawatan.
 
-Melihat Jadwal Praktik Dokter: Pengguna dapat melihat jadwal praktik dokter gigi yang tersedia untuk memilih slot waktu yang sesuai dengan kebutuhan mereka.
+Mengupdate Reservasi:
+Pengguna dapat memperbarui informasi pada reservasi mereka tanpa login. Jika terjadi perubahan pada tanggal, waktu, atau jenis perawatan, fitur ini memungkinkan pengguna untuk melakukan penyesuaian.
 
-Melihat Riwayat Reservasi: Pengguna dapat mengakses riwayat reservasi mereka untuk melihat catatan perawatan gigi sebelumnya dan memantau perkembangan kesehatan gigi mereka.
-
-Mengelola Profil Pengguna: Pengguna dapat mengedit atau memperbarui informasi profil mereka seperti alamat, nomor telepon, dan email melalui fitur ini.
+Konfirmasi Reservasi oleh Admin:
+Setelah pengguna membuat reservasi, admin dapat melakukan konfirmasi reservasi. Meskipun pengguna tidak login, admin dapat memastikan bahwa setiap reservasi telah diverifikasi dan dijadwalkan melalui database.
