@@ -179,6 +179,13 @@ fun ItemDetails(
                     horizontal = 12.dp
                 )
             )
+            ItemDetailsRow(
+                labelResID ="Status",
+                itemDetail = booking.status,
+                modifier = Modifier.padding(
+                    horizontal = 12.dp
+                )
+            )
         }
 
     }

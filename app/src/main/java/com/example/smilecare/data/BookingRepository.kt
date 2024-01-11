@@ -12,14 +12,15 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
 
 interface BookingRepository{
-    fun getAll(): Flow<List<Booking>>
+    fun getAllBookingStream(): Flow<List<Booking>>
+    fun getSiswaStream(id: Int): Flow<Booking?>
     suspend fun save(booking: Booking):String
     suspend fun update(booking: Booking)
     suspend fun delete(bookingId: String)
     fun getBookingById(bookingId: String): Flow<Booking>
 }
 class BookingRepositoryImpl(private val firestore: FirebaseFirestore):BookingRepository{
-    override fun getAll(): Flow<List<Booking>> = flow{
+    override fun getAllBookingStream(): Flow<List<Booking>> = flow{
         val snapshot = firestore.collection("Booking")
             .orderBy("jenisPerawatan", Query.Direction.ASCENDING)
             .get()
@@ -27,6 +28,10 @@ class BookingRepositoryImpl(private val firestore: FirebaseFirestore):BookingRep
         val booking = snapshot.toObjects(Booking::class.java)
         emit(booking)
     }.flowOn(Dispatchers.IO)
+
+    override fun getSiswaStream(id: Int): Flow<Booking?> {
+        TODO("Not yet implemented")
+    }
 
     override suspend fun save(booking: Booking): String {
         return try {

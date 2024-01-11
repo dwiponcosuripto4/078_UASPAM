@@ -6,6 +6,7 @@ import com.example.smilecare.data.BookingRepository
 import com.example.smilecare.model.Booking
 import com.example.smilecare.ui.HomeUIState
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
@@ -23,16 +24,29 @@ class HomeViewModel(private val bookingRepository: BookingRepository) : ViewMode
     companion object {
         private const val TIMEOUT_MILLIS = 5_000L
     }
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery: StateFlow<String> get() = _searchQuery
 
-    val homeUIState: StateFlow<HomeUIState> = bookingRepository.getAll()
+    val homeUIState: StateFlow<HomeUIState> = bookingRepository.getAllBookingStream()
         .filterNotNull()
-        .map {
-            HomeUIState (listBooking = it.toList(), it.size ) }
+        .map {bookingList ->
+            val filteredList = bookingList.filter { booking ->
+                booking.jenisPerawatan.contains(_searchQuery.value, ignoreCase = true) ||
+                        booking.tanggal.contains(_searchQuery.value, ignoreCase = true) ||
+                        booking.status.contains(_searchQuery.value, ignoreCase = true)
+            }
+            HomeUIState (listBooking = filteredList ) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
             initialValue = HomeUIState()
 
         )
-
+    fun setSearchQuery(query: String) {
+        _searchQuery.value = query
+    }
 }
+
+data class HomeUiState(
+    val listBooking: List<Booking> = listOf()
+)
