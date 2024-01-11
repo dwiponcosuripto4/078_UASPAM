@@ -2,25 +2,32 @@ package com.example.smilecare.ui.add
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.smilecare.R
+import com.example.smilecare.model.SumberData
 import com.example.smilecare.navigation.DestinasiNavigasi
 import com.example.smilecare.ui.BookingTopAppBar
 import com.example.smilecare.ui.DetailBooking
@@ -30,7 +37,7 @@ import kotlinx.coroutines.launch
 
 object DestinasiBooking : DestinasiNavigasi {
     override val route = "item_entry"
-    override val titleRes = "Entry Kontak"
+    override val titleRes = "Entry Reservasi"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -78,10 +85,11 @@ fun AddBookingBody(
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column (
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large)),
-        modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
-    ){
+    Column(
+        modifier = modifier
+            .padding(dimensionResource(id = R.dimen.padding_medium)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large))
+    ) {
         FormInput(
             detailBooking = uiStateBooking.detailBooking,
             onValueChange = onBookingValueChange,
@@ -97,6 +105,8 @@ fun AddBookingBody(
     }
 }
 
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormInput(
@@ -105,36 +115,57 @@ fun FormInput(
     onValueChange: (DetailBooking) -> Unit = {},
     enabled: Boolean = true
 ) {
-    Column (
+    Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
-    ){
+    ) {
         // Other fields...
-
-        // Waktu (dropdown)
         OutlinedTextField(
-            value = detailBooking.waktu,
-            onValueChange = {onValueChange(detailBooking.copy(waktu=it)) },
-            label = { Text(stringResource(R.string.waktu)) },
+            value = detailBooking.nama,
+            onValueChange = { onValueChange(detailBooking.copy(nama = it)) },
+            label = { Text(stringResource(R.string.nama)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
-
-        // Jenis Perawatan (dropdown)
         OutlinedTextField(
-            value = detailBooking.jenisPerawatan,
-            onValueChange = {onValueChange(detailBooking.copy(jenisPerawatan=it)) },
-            label = { Text(stringResource(R.string.jenisPerawatan)) },
+            value = detailBooking.alamat,
+            onValueChange = { onValueChange(detailBooking.copy(alamat = it)) },
+            label = { Text(stringResource(R.string.alamat)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled
+        )
+        OutlinedTextField(
+            value = detailBooking.telpon,
+            onValueChange = { onValueChange(detailBooking.copy(telpon = it)) },
+            label = { Text(stringResource(R.string.telpon)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
-            singleLine = true
+            singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
+        // Waktu (dropdown)
+        RadioButtonGroup(
+            label = stringResource(R.string.pilih_waktu),
+            options = SumberData.waktu,
+            selectedOption = detailBooking.waktu,
+            onOptionSelected = { onValueChange(detailBooking.copy(waktu = it)) },
+            enabled = enabled
+        )
+
+        // Jenis Perawatan (dropdown)
+        RadioButtonGroup(
+            label = stringResource(R.string.pilih_jenis),
+            options = SumberData.jenis,
+            selectedOption = detailBooking.jenisPerawatan,
+            onOptionSelected = { onValueChange(detailBooking.copy(jenisPerawatan = it)) },
+            enabled = enabled
         )
 
         // Catatan Khusus
         OutlinedTextField(
             value = detailBooking.catatanKhusus,
-            onValueChange = {onValueChange(detailBooking.copy(catatanKhusus=it)) },
+            onValueChange = { onValueChange(detailBooking.copy(catatanKhusus = it)) },
             label = { Text(stringResource(R.string.catatanKhusus)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
@@ -144,7 +175,7 @@ fun FormInput(
         // Status
         OutlinedTextField(
             value = detailBooking.status,
-            onValueChange = {onValueChange(detailBooking.copy(status=it)) },
+            onValueChange = { onValueChange(detailBooking.copy(status = it)) },
             label = { Text(stringResource(R.string.status)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
@@ -154,11 +185,37 @@ fun FormInput(
         // Nomor Antrian
         OutlinedTextField(
             value = detailBooking.nomorAntrian,
-            onValueChange = {onValueChange(detailBooking.copy(nomorAntrian=it)) },
+            onValueChange = { onValueChange(detailBooking.copy(nomorAntrian = it)) },
             label = { Text(stringResource(R.string.nomorAntrian)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun RadioButtonGroup(
+    label: String,
+    options: List<Int>,
+    selectedOption: String,
+    onOptionSelected: (String) -> Unit,
+    enabled: Boolean
+) {
+    Text(label)
+    options.forEach { optionId ->
+        val optionLabel = stringResource(optionId)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            RadioButton(
+                selected = selectedOption == optionLabel,
+                onClick = { onOptionSelected(optionLabel) },
+                enabled = enabled
+            )
+            Text(text = optionLabel)
+        }
     }
 }

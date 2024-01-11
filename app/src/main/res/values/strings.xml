@@ -7,4 +7,20 @@
     <string name="status">status</string>
     <string name="catatanKhusus">catatan khusus</string>
     <string name="nomorAntrian">no antri</string>
+    <string name="hari1">Selasa 09.00 - 17.00</string>
+    <string name="hari2">Kamis 07.00 - 16.00</string>
+    <string name="hari3">Sabtu 09.00 - 15.00</string>
+    <string name="nama">Nama</string>
+    <string name="alamat">Alamat</string>
+    <string name="telpon">No Telepon</string>
+    <string name="pilih_waktu">Pilih Waktu:</string>
+    <string name="jenis1">Perawatan Rutin</string>
+    <string name="jenis2">Kawat Gigi</string>
+    <string name="jenis3">Pemutihan Gigi</string>
+    <string name="jenis4">Implan Gigi</string>
+    <string name="jenis5">Gigi Palsu</string>
+    <string name="jenis6">Cabut Gigi</string>
+    <string name="jenis7">Tambal</string>
+    <string name="jenis8">Scalling</string>
+    <string name="pilih_jenis">Jenis Perawatan</string>
 </resources>
