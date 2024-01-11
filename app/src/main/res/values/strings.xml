@@ -24,4 +24,9 @@
     <string name="jenis8">Scalling</string>
     <string name="pilih_jenis">Jenis Perawatan</string>
     <string name="search">Cari</string>
+    <string name="next">Masuk</string>
+    <string name="welcome_text">Selamat Datang</string>
+    <string name="login_button">Masuk</string>
+    <string name="dental_care_slogan">Kebersihan Gigi, Kunci Utama Senyuman Indahmu!</string>
+    <string name="welcome_to_smilecare">Selamat datang di SmileCare App</string>
 </resources>

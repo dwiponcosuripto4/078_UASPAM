@@ -13,7 +13,7 @@ import kotlinx.coroutines.tasks.await
 
 interface BookingRepository{
     fun getAllBookingStream(): Flow<List<Booking>>
-    fun getSiswaStream(id: Int): Flow<Booking?>
+    fun getDataStream(id: Int): Flow<Booking?>
     suspend fun save(booking: Booking):String
     suspend fun update(booking: Booking)
     suspend fun delete(bookingId: String)
@@ -29,7 +29,7 @@ class BookingRepositoryImpl(private val firestore: FirebaseFirestore):BookingRep
         emit(booking)
     }.flowOn(Dispatchers.IO)
 
-    override fun getSiswaStream(id: Int): Flow<Booking?> {
+    override fun getDataStream(id: Int): Flow<Booking?> {
         TODO("Not yet implemented")
     }
 

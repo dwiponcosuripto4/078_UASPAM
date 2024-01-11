@@ -1,5 +1,6 @@
 package com.example.smilecare.ui.detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,6 +30,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -77,7 +79,8 @@ fun DetailScreen(
                     contentDescription = "",
                 )
             }
-        }, modifier = modifier
+        },
+        modifier = Modifier.background(color = Color(0xFF00A79D))
     ) { innerPadding ->
         ItemDetailsBody(
             detailUIState = uiState.value,
@@ -140,7 +143,8 @@ fun ItemDetails(
     booking: Booking, modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier, colors = CardDefaults.cardColors(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
@@ -159,6 +163,27 @@ fun ItemDetails(
                 )
             )
             ItemDetailsRow(
+                labelResID = "Nama",
+                itemDetail = booking.nama,
+                modifier = Modifier.padding(
+                    horizontal = 12.dp
+                )
+            )
+            ItemDetailsRow(
+                labelResID = "Alamat",
+                itemDetail = booking.alamat,
+                modifier = Modifier.padding(
+                    horizontal = 12.dp
+                )
+            )
+            ItemDetailsRow(
+                labelResID = "Nomor Telepon",
+                itemDetail = booking.telpon,
+                modifier = Modifier.padding(
+                    horizontal = 12.dp
+                )
+            )
+            ItemDetailsRow(
                 labelResID = "Tanggal",
                 itemDetail = booking.tanggal,
                 modifier = Modifier.padding(
@@ -168,13 +193,6 @@ fun ItemDetails(
             ItemDetailsRow(
                 labelResID ="Waktu",
                 itemDetail = booking.waktu,
-                modifier = Modifier.padding(
-                    horizontal = 12.dp
-                )
-            )
-            ItemDetailsRow(
-                labelResID ="Status",
-                itemDetail = booking.status,
                 modifier = Modifier.padding(
                     horizontal = 12.dp
                 )

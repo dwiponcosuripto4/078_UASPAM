@@ -1,5 +1,6 @@
 package com.example.smilecare.ui.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -32,11 +35,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.smilecare.R
@@ -44,6 +50,7 @@ import com.example.smilecare.model.Booking
 import com.example.smilecare.navigation.DestinasiNavigasi
 import com.example.smilecare.ui.BookingTopAppBar
 import com.example.smilecare.ui.PenyediaViewModel
+import com.example.smilecare.ui.theme.SmileCareTheme
 
 object DestinasiHome : DestinasiNavigasi {
     override val route = "home"
@@ -66,7 +73,7 @@ fun HomeScreen(
             BookingTopAppBar(
                 title = "Reservasi Anda",
                 canNavigateBack = false,
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
             )
         },
         floatingActionButton = {
@@ -109,7 +116,7 @@ fun BodyHome(
         modifier = modifier
     ) {
         SearchBar(
-            searchQuery = searchQuery,  // Tambahkan parameter searchQuery
+            searchQuery = searchQuery,
             modifier = Modifier
                 .padding(horizontal = dimensionResource(id = R.dimen.padding_medium))
                 .fillMaxWidth(),
@@ -129,6 +136,7 @@ fun BodyHome(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
+
         )
         Divider(modifier = Modifier.fillMaxWidth())
         if (itemBooking.isEmpty()) {
@@ -191,6 +199,13 @@ fun DataBooking(
     booking: Booking,
     modifier: Modifier = Modifier
 ) {
+    val textColor = when (booking.status) {
+        "Pending" -> MaterialTheme.colorScheme.error
+        "Dikonfirmasi" -> MaterialTheme.colorScheme.primary
+        "Selesai" -> MaterialTheme.colorScheme.secondary
+        else -> MaterialTheme.colorScheme.onSurface
+    }
+
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -204,12 +219,12 @@ fun DataBooking(
             ) {
                 Text(
                     text = booking.jenisPerawatan,
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(Modifier.weight(1f))
                 Icon(
-                    imageVector = Icons.Default.Phone,
-                    contentDescription = null,
+                    imageVector = Icons.Default.DateRange,
+                    contentDescription = null
                 )
                 Text(
                     text = booking.tanggal,
@@ -222,16 +237,19 @@ fun DataBooking(
             )
             Text(
                 text = booking.status,
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                color = textColor
             )
         }
     }
 }
 
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
-    searchQuery: String,  // Tambahkan parameter searchQuery
+    searchQuery: String,
     modifier: Modifier = Modifier,
     onSearchQueryChanged: (String) -> Unit,
     onSearchClear: () -> Unit
@@ -239,7 +257,16 @@ fun SearchBar(
     TextField(
         value = searchQuery,
         onValueChange = { onSearchQueryChanged(it) },
-        placeholder = { Text(text = stringResource(R.string.search)) },
+        placeholder = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(imageVector = Icons.Default.Search, contentDescription = null)
+                Text(text = stringResource(R.string.search))
+            }
+        },
         trailingIcon = {
             if (searchQuery.isNotEmpty()) {
                 IconButton(onClick = { onSearchClear() }) {
@@ -250,3 +277,4 @@ fun SearchBar(
         modifier = modifier
     )
 }
+

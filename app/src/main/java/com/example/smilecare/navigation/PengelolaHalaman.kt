@@ -16,15 +16,23 @@ import com.example.smilecare.ui.edit.EditDestination
 import com.example.smilecare.ui.edit.EditScreen
 import com.example.smilecare.ui.home.DestinasiHome
 import com.example.smilecare.ui.home.HomeScreen
+import com.example.smilecare.ui.home.LandingScreen
 
 @Composable
 fun PengelolaHalaman(navController: NavHostController = rememberNavController()) {
 
     NavHost(
         navController = navController,
-        startDestination = DestinasiHome.route,
+        startDestination = DestinasiLanding.route,
         modifier = Modifier
     ) {
+        composable(DestinasiLanding.route) {
+            LandingScreen(
+                onLoginClicked = {
+                    navController.navigate(DestinasiHome.route)
+                }
+            )
+        }
         composable(
             DestinasiHome.route
         ) {
