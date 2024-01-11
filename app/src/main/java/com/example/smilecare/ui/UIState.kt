@@ -14,7 +14,7 @@ data class DetailBooking(
     val waktu: String = "",
     val jenisPerawatan: String = "",
     val catatanKhusus: String = "",
-    val status: String = "",
+    val status: String = "Pending",
     val nomorAntrian: String = "",
     val tanggal: String = ""
 )

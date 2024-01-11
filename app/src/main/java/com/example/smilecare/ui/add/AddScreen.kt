@@ -33,7 +33,11 @@ import com.example.smilecare.ui.BookingTopAppBar
 import com.example.smilecare.ui.DetailBooking
 import com.example.smilecare.ui.PenyediaViewModel
 import com.example.smilecare.ui.UIStateBooking
+import com.google.android.libraries.places.api.model.LocalDate
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 object DestinasiBooking : DestinasiNavigasi {
     override val route = "item_entry"
@@ -85,6 +89,7 @@ fun AddBookingBody(
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val currentDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
     Column(
         modifier = modifier
             .padding(dimensionResource(id = R.dimen.padding_medium)),
@@ -96,7 +101,10 @@ fun AddBookingBody(
             modifier = Modifier.fillMaxWidth()
         )
         Button(
-            onClick = onSaveClick,
+            onClick = {
+                onBookingValueChange(uiStateBooking.detailBooking.copy(tanggal = currentDate.toString()))
+                onSaveClick()
+            },
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -115,6 +123,7 @@ fun FormInput(
     onValueChange: (DetailBooking) -> Unit = {},
     enabled: Boolean = true
 ) {
+    val currentDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
@@ -168,8 +177,7 @@ fun FormInput(
             onValueChange = { onValueChange(detailBooking.copy(catatanKhusus = it)) },
             label = { Text(stringResource(R.string.catatanKhusus)) },
             modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
-            singleLine = true
+            enabled = enabled
         )
 
         // Status
@@ -178,17 +186,23 @@ fun FormInput(
             onValueChange = { onValueChange(detailBooking.copy(status = it)) },
             label = { Text(stringResource(R.string.status)) },
             modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
+            enabled = false,
             singleLine = true
         )
-
-        // Nomor Antrian
         OutlinedTextField(
             value = detailBooking.nomorAntrian,
             onValueChange = { onValueChange(detailBooking.copy(nomorAntrian = it)) },
             label = { Text(stringResource(R.string.nomorAntrian)) },
             modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
+            enabled = false,
+            singleLine = true
+        )
+        OutlinedTextField(
+            value = currentDate.toString(),
+            onValueChange = { onValueChange(detailBooking.copy(tanggal = it)) },
+            label = { Text(stringResource(R.string.tanggal)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = false,  // Tanggal tidak dapat diubah
             singleLine = true
         )
     }

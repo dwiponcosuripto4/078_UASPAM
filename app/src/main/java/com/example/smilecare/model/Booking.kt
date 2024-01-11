@@ -12,5 +12,5 @@ data class Booking(
     val nomorAntrian: String,
     val tanggal: String,
 ) {
-    constructor() : this("","","","","","", "", "", "", "")
+    constructor() : this("","","","","","", "", "Pending", "", "")
 }
