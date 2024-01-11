@@ -7,11 +7,11 @@ SmileCare
 
 Project Description
 -
-SmileCare adalah aplikasi mobile yang dirancang untuk memudahkan pengguna dalam melakukan reservasi perawatan gigi. Pengguna dapat mendaftarkan diri, membuat janji perawatan, dan melihat riwayat reservasi dengan cepat dan mudah. Aplikasi ini menggunakan Firebase Firestore untuk menyimpan data pasien dan Firebase Authentication untuk proses login. SmileCare membantu pengguna merawat kesehatan gigi dengan cara yang praktis dan efisien.
+SmileCare adalah aplikasi mobile yang dirancang untuk memudahkan pengguna dalam melakukan reservasi perawatan gigi. Pengguna dapat mendaftarkan diri, membuat janji perawatan, dan melihat riwayat reservasi dengan cepat dan mudah. Aplikasi ini menggunakan Firebase Firestore untuk menyimpan data pasien. SmileCare membantu pengguna merawat kesehatan gigi dengan cara yang praktis dan efisien.
 
 Use Case
 -
-![Untitled (5)](https://github.com/dwiponcosuripto4/078_UASPAM/assets/115076093/6f48f837-b3e6-46d6-bda7-2e473b52aab2)
+![Untitled (5)](https://github.com/dwiponcosuripto4/078_UASPAM/assets/115076093/7b8a7248-78ed-4868-9097-8fc734cae95e)
 
 Reservasi Perawatan:
 Pengguna dapat membuat janji perawatan gigi tanpa perlu login. Mereka dapat memilih tanggal, waktu, dan jenis perawatan yang diinginkan, memudahkan proses pemesanan dengan cepat dan tanpa pembatasan akses.
